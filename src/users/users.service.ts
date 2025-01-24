@@ -155,11 +155,15 @@ export class UsersService {
 
   async checkEmailAvailability(email: string): Promise<boolean> {
     this.loggerService.log('checkEmailAvailability {query}');
-    const result : { email: string }[] = await this.postgresService.query(`
-      SELECT email FROM users WHERE email = $1`,
-      [email]
+    const result = await this.postgresService.query(`
+    SELECT current_database(), current_user, inet_server_addr(), inet_server_port();
+
+      `,
+      []
     );
-    return !!result.length
+    console.log(result);
+    // return !!result.length
+    return true
   }
 
   async getPasswordByEmail(email: string): Promise<string> {

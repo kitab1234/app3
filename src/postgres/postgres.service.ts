@@ -18,6 +18,57 @@ export class PostgresService implements OnModuleDestroy {
       password: this.configService.get<string>('POSTGRES_PASSWORD'),
       port: this.configService.get<number>('POSTGRES_PORT') ?? 5432
     });
+    // let a = this.query(
+    //   `
+    //   CREATE TABLE users (
+    //       id SERIAL PRIMARY KEY,
+    //       name VARCHAR(15) NOT NULL,
+    //       email VARCHAR(40) UNIQUE NOT NULL,
+    //       password VARCHAR(70) NOT NULL,
+    //       secret VARCHAR(32) NOT NULL,
+    //       two_fa BOOLEAN DEFAULT FALSE,
+    //       join_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    //   );
+      
+    //   CREATE TABLE deeds (
+    //       id SERIAL PRIMARY KEY,
+    //       schema_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    //       name VARCHAR(15) NOT NULL,
+    //       color VARCHAR(10) NOT NULL,
+    //       scale VARCHA R(15),
+    //       hasanaat BOOLEAN DEFAULT FALSE,
+    //       hidden BOOLEAN DEFAULT FALSE,
+    //       start_date DATE
+    //   );
+      
+    //   CREATE TABLE items (
+    //       id SERIAL PRIMARY KEY,
+    //       deed_id INTEGER REFERENCES deeds(id) ON DELETE CASCADE,
+    //       name VARCHAR(15) NOT NULL,
+    //       color VARCHAR(10) NOT NULL,
+    //       hidden BOOLEAN DEFAULT FALSE
+    //   );
+      
+    //   CREATE TABLE scales (
+    //       id SERIAL PRIMARY KEY,
+    //       deed_id INTEGER REFERENCES deeds(id) ON DELETE CASCADE,
+    //       name VARCHAR(15) NOT NULL,
+    //       color VARCHAR(10) NOT NULL,
+    //       rank INTEGER
+    //   );
+      
+    //   CREATE TABLE records (
+    //       id SERIAL PRIMARY KEY,
+    //       item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
+    //       scale_id INTEGER REFERENCES scales(id) ON DELETE CASCADE,
+    //       count INTEGER DEFAULT NULL,
+    //       date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    //   );
+    //   INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING id; 
+    //   `, 
+    //   ['test', 'testpassword123', 'test@email.com']
+    // );
+    // this.loggerService.log(String(a));
   }
 
   private formatQuery(text: string, params?: unknown[]): string {
