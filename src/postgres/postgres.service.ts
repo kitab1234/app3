@@ -13,6 +13,8 @@ export class PostgresService implements OnModuleDestroy {
   ) {
     this.loggerService.log(process.env.PORT)
     this.loggerService.log(this.configService.get<string>('PORT'))
+    this.loggerService.log(process.env.JWT_PRIVATE_KEY)
+    this.loggerService.log(this.configService.get<string>('JWT_PRIVATE_KEY'))
     this.loggerService.log(this.configService.get<string>('POSTGRES_USER'))
     this.loggerService.log(this.configService.get<string>('POSTGRES_HOST'))
     this.loggerService.log(this.configService.get<string>('POSTGRES_NAME'))
