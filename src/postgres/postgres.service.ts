@@ -2,7 +2,7 @@ import { Pool } from 'pg';
 import { ConfigService } from '@nestjs/config';
 import { Logger } from 'src/logger/logger.service';
 import { Injectable, OnModuleDestroy } from '@nestjs/common';
-
+import * as process from 'process';
 @Injectable()
 export class PostgresService implements OnModuleDestroy {
   private pool: Pool;
@@ -11,6 +11,8 @@ export class PostgresService implements OnModuleDestroy {
     private readonly configService: ConfigService,
     private readonly loggerService: Logger
   ) {
+    this.loggerService.log(process.env.PORT)
+    this.loggerService.log(this.configService.get<string>('PORT'))
     this.loggerService.log(this.configService.get<string>('POSTGRES_USER'))
     this.loggerService.log(this.configService.get<string>('POSTGRES_HOST'))
     this.loggerService.log(this.configService.get<string>('POSTGRES_NAME'))
