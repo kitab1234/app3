@@ -11,6 +11,11 @@ export class PostgresService implements OnModuleDestroy {
     private readonly configService: ConfigService,
     private readonly loggerService: Logger
   ) {
+    this.loggerService.log(this.configService.get<string>('POSTGRES_USER'))
+    this.loggerService.log(this.configService.get<string>('POSTGRES_HOST'))
+    this.loggerService.log(this.configService.get<string>('POSTGRES_NAME'))
+    this.loggerService.log(this.configService.get<string>('POSTGRES_PASSWORD'))
+    this.loggerService.log(this.configService.get<string>('POSTGRES_PORT'))
     this.pool = new Pool({
       user: this.configService.get<string>('POSTGRES_USER'),
       host: this.configService.get<string>('POSTGRES_HOST'),
