@@ -16,7 +16,7 @@ export class PostgresService implements OnModuleDestroy {
       host: this.configService.get<string>('POSTGRES_HOST'),
       database: this.configService.get<string>('POSTGRES_NAME'),
       password: this.configService.get<string>('POSTGRES_PASSWORD'),
-      port: this.configService.get<number>('POSTGRES_PORT') ?? 5432
+      port: this.configService.get<number>('POSTGRES_PORT')
     });
     // let a = this.query(
     //   `
